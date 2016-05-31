@@ -97,6 +97,16 @@ RSpec.describe "Employees" do
     expect(url).to eq required_url
   end
 
+  it "gets employment status table" do
+    response = File.new("spec/fixtures/employment_status.json")
+    stub_request(:any, /.*api\.bamboohr\.com.*/).to_return(response)
+
+    table = @client.employee.employment_status(52)
+
+    expect(table).to be_a Array
+    expect(table.first[:id]).to eq "15"
+  end
+
   it "returns the proper url using employee id" do
     response = File.new("spec/fixtures/employee_emails.json")
     stub_request(:any, /.*api\.bamboohr\.com.*/).to_return(response)

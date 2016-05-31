@@ -1,0 +1,17 @@
+HTTP/1.0 200 Proxied
+Date: Tue, 31 May 2016 16:35:32 GMT
+Content-Type: application/json
+
+[{
+  "id": "15",
+  "employeeId": "52",
+  "date": "2011-08-03",
+  "employmentStatus": "Student",
+  "comment": null
+}, {
+  "id": "23",
+  "employeeId": "52",
+  "date": "2015-03-01",
+  "employmentStatus": "Fulltime",
+  "comment": null
+}]
