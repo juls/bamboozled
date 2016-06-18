@@ -14,9 +14,7 @@ RSpec.describe "Employees" do
     expect(employee).to be_a Hash
     expect(employee.count).to eq 3
     expect(employee["firstName"]).to eq "John"
-    expect(employee[:firstName]).to eq "John"
     expect(employee["lastName"]).to eq "Doe"
-    expect(employee[:lastName]).to eq "Doe"
   end
 
   it "Gets all employees" do
@@ -48,20 +46,20 @@ RSpec.describe "Employees" do
     info = @client.employee.job_info(1234)
 
     expect(info).to be_a Hash
-    expect(info[:table][:row].first[:employeeId]).to eq "100"
+    expect(info["table"]["row"].first["employeeId"]).to eq "100"
 
-    info[:table][:row].first[:field].each do |f|
-      case f[:id]
+    info["table"]["row"].first["field"].each do |f|
+      case f["id"]
       when "location"
-        expect(f[:__content__]).to eq "New York Office"
+        expect(f["__content__"]).to eq "New York Office"
       when "division"
-        expect(f[:__content__]).to eq "Sprockets"
+        expect(f["__content__"]).to eq "Sprockets"
       when "department"
-        expect(f[:__content__]).to eq "Research and Development"
+        expect(f["__content__"]).to eq "Research and Development"
       when "jobTitle"
-        expect(f[:__content__]).to eq "Machinist"
+        expect(f["__content__"]).to eq "Machinist"
       when "reportsTo"
-        expect(f[:__content__]).to eq "John Smith"
+        expect(f["__content__"]).to eq "John Smith"
       end
     end
   end
@@ -104,7 +102,7 @@ RSpec.describe "Employees" do
     table = @client.employee.employment_status(52)
 
     expect(table).to be_a Array
-    expect(table.first[:id]).to eq "15"
+    expect(table.first["id"]).to eq "15"
   end
 
   it "returns the proper url using employee id" do

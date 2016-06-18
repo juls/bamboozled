@@ -39,15 +39,10 @@ module Bamboozled
               if response.body.to_s.empty?
                 {"headers" => response.headers}.with_indifferent_access
               else
-                r = JSON.parse(response.body)
-                if r.is_a? Array
-                  r.map &:with_indifferent_access
-                else
-                  r.with_indifferent_access
-                end
+                JSON.parse(response.body)
               end
             rescue
-              MultiXml.parse(response, symbolize_keys: true)
+              MultiXml.parse(response)
             end
           when 400
             raise Bamboozled::BadRequest.new(response, params, 'The request was invalid or could not be understood by the server. Resubmitting the request will likely result in the same error.')
